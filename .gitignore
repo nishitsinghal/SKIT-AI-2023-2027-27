@@ -6,4 +6,6 @@ __pycache__/
 docs/
 *.zip
 dataset/
+node_modules/
+.env
 
