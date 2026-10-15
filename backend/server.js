@@ -1,9 +1,11 @@
+
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const testRoutes = require("./routes/testRoutes");
 const userRoutes = require("./routes/userRoutes");
+const screeningRoutes = require("./routes/screeningRoutes");
 
 dotenv.config();
 
@@ -14,6 +16,7 @@ app.use(express.json());
 
 app.use("/api/test", testRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/screening", screeningRoutes);
 
 app.get("/", (req, res) => {
   res.send("AI Dementia Screening Backend is running");
