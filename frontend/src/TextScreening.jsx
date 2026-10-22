@@ -19,24 +19,22 @@ function TextScreening({ onBack, userName }) {
             return;
         }
 
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            setMessage("Your session has expired. Please log in again.");
+            setMessageType("error");
+            return;
+        }
+
         setLoading(true);
         setMessage("");
         setMessageType("");
 
         try {
-            const token = localStorage.getItem("token");
-
-            if (!token) {
-                setMessage("Your session has expired. Please log in again.");
-                setMessageType("error");
-                return;
-            }
-
             const response = await axios.post(
                 API,
-                {
-                    text: responseText.trim(),
-                },
+                { text: responseText.trim() },
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -44,7 +42,7 @@ function TextScreening({ onBack, userName }) {
                 }
             );
 
-            setMessage(response.data.message);
+            setMessage(response.data.message || "Response submitted successfully.");
             setMessageType("success");
         } catch (error) {
             setMessage(

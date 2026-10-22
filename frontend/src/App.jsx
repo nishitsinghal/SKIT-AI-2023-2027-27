@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import "./App.css";
 import TextScreening from "./TextScreening";
+import ScreeningHistory from "./ScreeningHistory";
+import SpeechScreening from "./SpeechScreening";
 
 const API = "http://localhost:5000/api/users";
 
@@ -98,10 +100,27 @@ function App() {
     setShowPassword(false);
   };
 
+  if (isDashboard && currentPage === "speech-screening") {
+    return (
+      <SpeechScreening
+        userName={currentUser?.name}
+        onBack={() => setCurrentPage("dashboard")}
+      />
+    );
+  }
+
   if (isDashboard && currentPage === "text-screening") {
     return (
       <TextScreening
         userName={currentUser?.name}
+        onBack={() => setCurrentPage("dashboard")}
+      />
+    );
+  }
+
+  if (isDashboard && currentPage === "screening-history") {
+    return (
+      <ScreeningHistory
         onBack={() => setCurrentPage("dashboard")}
       />
     );
@@ -135,6 +154,7 @@ function App() {
           </button>
         </header>
 
+
         <section className="dashboard-content">
           <p className="eyebrow">YOUR SCREENING WORKSPACE</p>
 
@@ -152,20 +172,15 @@ function App() {
               <div className="dashboard-card-icon">T</div>
               <h2>Text Screening</h2>
               <p>
-                Enter text for the planned AI-based cognitive
-                screening workflow.
+                Submit text responses for preliminary cognitive
+                screening research.
               </p>
-
               <button
                 className="dashboard-action"
-                onClick={() => {
-                  setMessage("");
-                  setCurrentPage("text-screening");
-                }}
+                onClick={() => setCurrentPage("text-screening")}
               >
-                Explore text screening →
+                Start text screening →
               </button>
-
             </article>
 
             <article className="dashboard-card">
@@ -175,15 +190,27 @@ function App() {
                 Prepare for speech-based screening using the
                 planned speech analysis module.
               </p>
+
               <button
                 className="dashboard-action"
-                onClick={() =>
-                  setMessage(
-                    "Speech screening page is the next feature to build."
-                  )
-                }
+                onClick={() => setCurrentPage("speech-screening")}
               >
                 Explore speech screening →
+              </button>
+
+            </article>
+
+            <article className="dashboard-card">
+              <div className="dashboard-card-icon">H</div>
+              <h2>Screening History</h2>
+              <p>
+                View your previously submitted text-screening responses.
+              </p>
+              <button
+                className="dashboard-action"
+                onClick={() => setCurrentPage("screening-history")}
+              >
+                View screening history →
               </button>
             </article>
           </div>
@@ -199,7 +226,8 @@ function App() {
             and does not provide a medical diagnosis.
           </p>
         </section>
-      </main>
+
+      </main >
     );
   }
 
