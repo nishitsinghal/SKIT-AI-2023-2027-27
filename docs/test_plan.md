@@ -3,8 +3,7 @@
 **Project ID:** SKIT/AI/2023-2027/27  
 **Branch:** CSE (AI), Section B, Session 2026-27  
 **Prepared by:** Narendra Choudhary (Testing, Evaluation & Documentation)  
-**Team:** Vaibhav Kumar Jain (Frontend + Node.js backend, Team Lead), Nishit Singhal (AI/ML model), Sujal Solanki (NLP & speech processing)  
-**Approved by:** Kapil Sharma (22/08/2026)  
+**Team:** Vaibhav Kumar Jain (Frontend + backend), Nishit Singhal (AI/ML model), Sujal Solanki (NLP & speech processing)    
 **Last updated:** 29 October 2026
 
 ## 1. Objective
